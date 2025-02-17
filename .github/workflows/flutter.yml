@@ -1,0 +1,42 @@
+name: Flutter CI
+
+on:
+  push:
+    branches:
+      - develop
+      - 'feature/**'
+    paths:
+      - 'client_mobile/**'
+      - '.github/workflows/flutter.yml'
+  pull_request:
+    branches:
+      - main
+      - develop
+    paths:
+      - 'client_mobile/**'
+      - '.github/workflows/flutter.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./client_mobile
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run tests
+        run: flutter test
+
+      # - name: Build APK
+      #   run: flutter build apk --debug
