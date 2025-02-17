@@ -6,14 +6,14 @@ on:
       - develop
       - 'feature/**'
     paths:
-      - 'client_mobile/**'
+      - '**'
       - '.github/workflows/flutter.yml'
   pull_request:
     branches:
       - main
       - develop
     paths:
-      - 'client_mobile/**'
+      - '**'
       - '.github/workflows/flutter.yml'
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./client_mobile
+        working-directory: ./
 
     steps:
       - uses: actions/checkout@v4
