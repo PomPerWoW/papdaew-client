@@ -45,12 +45,17 @@ class LoginPage extends StatelessWidget {
                 SizedBox(height: 8),
                 TextField(
                   decoration: InputDecoration(
-                    hintText: 'username@gmail.com',
+                    hintText: 'Username@gmail.com',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none,
                     ),
                     fillColor: Color(0xFFF5F5F5),
                     filled: true,
+                    contentPadding: EdgeInsets.symmetric(
+                      vertical: 10.0, 
+                      horizontal: 20.0
+                    ), 
                   ),
                 ),
                 SizedBox(height: 16),
@@ -68,12 +73,17 @@ class LoginPage extends StatelessWidget {
                 TextField(
                   obscureText: true,
                   decoration: InputDecoration(
-                    hintText: 'enter your password',
+                    hintText: 'Enter your password',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none,
                     ),
                     fillColor: Color(0xFFF5F5F5),
                     filled: true,
+                    contentPadding: EdgeInsets.symmetric(
+                      vertical: 10.0, 
+                      horizontal: 20.0
+                    ), 
                   ),
                 ),
                 Align(
