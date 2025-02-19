@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:papdaew_client/widgets/navbar_widget.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
