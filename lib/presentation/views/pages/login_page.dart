@@ -6,10 +6,48 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 0.27),
+          child: Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Color(0xFF6B9080),
+            ),
+            child: SafeArea(  
+              child: Padding(
+                padding: EdgeInsets.only(bottom: 40),  
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,  
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 30.0), 
+                        child: Image.asset(
+                          'assets/images/papdaewlogo.png',
+                          height: 80,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      'Real-time Queue',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            )
+          ),
+        ),
         body: Align(
           alignment: Alignment.bottomCenter,
           child: Container(
-            height: MediaQuery.of(context).size.height * 0.73,
+            height: MediaQuery.of(context).size.height * 0.8,
             width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadiusDirectional.only(
