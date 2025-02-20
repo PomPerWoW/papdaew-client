@@ -184,30 +184,6 @@ class LoginPage extends StatelessWidget {
                         },
                       ),
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        color: Color(0xFFF5F5F5),
-                      ),
-                      child: IconButton(
-                        icon: Icon(Icons.facebook),
-                        onPressed: () {
-                          // Handle Google login
-                        },
-                      ),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        color: Color(0xFFF5F5F5),
-                      ),
-                      child: IconButton(
-                        icon: Icon(Icons.apple),
-                        onPressed: () {
-                          // Handle Apple login
-                        },
-                      ),
-                    ),
                   ],
                 ),
                 Spacer(),
