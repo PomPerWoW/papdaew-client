@@ -62,13 +62,27 @@ class SignupPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                 SizedBox(height: 16),
-                Text(
-                        'Back to Login',
-                        style: TextStyle(
+                Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/login'); // Navigate to login page
+                      },
+                      child: Image.asset(
+                        'assets/images/leftarrow.png',
+                        height: 20,
+                      ),
+                    ),
+                    SizedBox(width: 4),
+                    Text(
+                      'Back to Login',
+                      style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
-                        ),
                       ),
+                    ),
+                  ],
+                ),
                 SizedBox(height: 16),
                 Text(
                   'Signup',
@@ -194,7 +208,8 @@ class SignupPage extends StatelessWidget {
                     backgroundColor: Color(0xFF525252), // Button color
                     ),
                     onPressed: () {
-                      // Handle login
+                      // Navigate to homepage
+                      Navigator.pushNamed(context, '/home');
                     },
                     child: Text(
                       'Signup',

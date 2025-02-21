@@ -149,7 +149,8 @@ class LoginPage extends StatelessWidget {
                     backgroundColor: Color(0xFF525252), // Button color
                     ),
                     onPressed: () {
-                      // Handle login
+                      // Navigate to homepage
+                      Navigator.pushNamed(context, '/home');
                     },
                     child: Text(
                       'Login',
@@ -192,18 +193,21 @@ class LoginPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                     Text("Don’t have an account yet?"),
-                    TextButton(
-                      onPressed: () {
-                      // Handle sign up
-                      },
-                      child: Text(
-                        'Sign up for free',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w900,
-                          color: Color(0xFF525252)
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/signup'); // Navigate to login page
+                        },
+                        child: Text(
+                          'Sign up for free',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w900,
+                            color: Color(0xFF525252)
+                            ),
                           ),
-                        ),
                       ),
+                    ),
                     ],
                   ),
                 ),
