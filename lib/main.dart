@@ -23,8 +23,8 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
-      // home: const HomeScreen(),
-      home: const LoginPage(),
+      home: const HomeScreen(),
+      // home: const LoginPage(),
       // home: const SignupPage(),
       routes: {
         '/home': (context) => const HomeScreen(),
