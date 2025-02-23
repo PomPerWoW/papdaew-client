@@ -220,44 +220,53 @@ class _HomepagePageState extends State<HomepagePage> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 18.0, top: 8),
-                child: ClipRRect(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/restaurant');
+                  },
+                  child: ClipRRect(
                   borderRadius: BorderRadius.circular(16.0),
                   child: SizedBox(
                     width: 80,
                     height: 80,
                     child: Stack(
-                      children: [
-                        Image.asset(
-                          'assets/images/restaurant.png',
-                          fit: BoxFit.cover,
-                          width: 80,
-                          height: 80,
-                        ),
-                        Container(
-                          width: 80,
-                          height: 80,
-                          color: Colors.black.withOpacity(0.5),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 32, left: 8),
-                          child: Text(
-                            'Restaurant',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                              fontFamily: "Inter",
+                        children: [
+                          Image.asset(
+                            'assets/images/restaurant.png',
+                            fit: BoxFit.cover,
+                            width: 80,
+                            height: 80,
+                          ),
+                          Container(
+                            width: 80,
+                            height: 80,
+                            color: Colors.black.withOpacity(0.5),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 32, left: 8),
+                            child: Text(
+                              'Restaurant',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                fontFamily: "Inter",
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 18.0, top: 8),
-                child: ClipRRect(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/hospital');
+                  },
+                  child: ClipRRect(
                   borderRadius: BorderRadius.circular(16.0),
                   child: SizedBox(
                     width: 80,
@@ -291,10 +300,15 @@ class _HomepagePageState extends State<HomepagePage> {
                     ),
                   ),
                 ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 18.0, top: 8),
-                child: ClipRRect(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/bank');
+                  },
+                  child: ClipRRect(
                   borderRadius: BorderRadius.circular(16.0),
                   child: SizedBox(
                     width: 80,
@@ -328,10 +342,15 @@ class _HomepagePageState extends State<HomepagePage> {
                     ),
                   ),
                 ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 18.0, top: 8),
-                child: ClipRRect(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/otherservices');
+                  },
+                  child: ClipRRect(
                   borderRadius: BorderRadius.circular(16.0),
                   child: SizedBox(
                     width: 80,
@@ -364,6 +383,7 @@ class _HomepagePageState extends State<HomepagePage> {
                       ],
                     ),
                   ),
+                ),
                 ),
               ),
             ],
@@ -408,21 +428,21 @@ class _HomepagePageState extends State<HomepagePage> {
           SizedBox(
             height: 200,
             child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            shrinkWrap: true,
-            itemCount: 5,
-            itemBuilder: (context, index) {
-              return Container(
-                margin: const EdgeInsets.only(left: 18),
-                width: 150,
-                height: 150,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  color: Colors.grey,
-                ),
-              );
-            },
-          ),
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              itemCount: 5,
+              itemBuilder: (context, index) {
+                return Container(
+                  margin: const EdgeInsets.only(left: 18),
+                  width: 150,
+                  height: 150,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    color: Colors.grey,
+                  ),
+                );
+              },
+            ),
           ),
           SizedBox(height: 16),
           Row(
