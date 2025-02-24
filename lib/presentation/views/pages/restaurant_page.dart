@@ -93,7 +93,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
             ),
             const SizedBox(height: 16),
             SizedBox(
-              height: 120,
+              height: MediaQuery.of(context).size.height * 0.13,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
@@ -247,7 +247,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
                 color: Colors.grey,
               ),
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 16),
             Container(
               width: 380,
               height: 110,
@@ -256,7 +256,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
                 color: Colors.grey,
               ),
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 16),
             Container(
               width: 380,
               height: 110,
@@ -265,7 +265,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
                 color: Colors.grey,
               ),
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 16),
             Container(
               width: 380,
               height: 110,
@@ -274,7 +274,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
                 color: Colors.grey,
               ),
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 16),
             Container(
               width: 380,
               height: 110,
@@ -283,7 +283,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
                 color: Colors.grey,
               ),
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 16),
             Container(
               width: 380,
               height: 110,
@@ -292,7 +292,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
                 color: Colors.grey,
               ),
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 16),
             Container(
               width: 380,
               height: 110,
@@ -301,7 +301,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
                 color: Colors.grey,
               ),
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 16),
             Container(
               width: 380,
               height: 110,
@@ -310,7 +310,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
                 color: Colors.grey,
               ),
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 16),
             Container(
               width: 380,
               height: 110,
