@@ -63,6 +63,7 @@ flutter:
   - assets/images/
   - assets/images/restaurant/categories/
   - assets/images/otherservices/categories/
+  - assets/images/Hospital/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
