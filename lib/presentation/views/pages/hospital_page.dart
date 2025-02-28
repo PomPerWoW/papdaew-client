@@ -7,21 +7,12 @@ class HospitalPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Hospital")),
-      body: Padding(
+      body: SingleChildScrollView(
+        child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "Good morning,",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 4),
-            const Text(
-              "What can I do for you?",
-              style: TextStyle(fontSize: 12, color: Color(0xFF555555)),
-            ),
-            const SizedBox(height: 16),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.9,
               height: 50,
@@ -86,6 +77,7 @@ class HospitalPage extends StatelessWidget {
           ],
         ),
       ),
+      )
     );
   }
 }

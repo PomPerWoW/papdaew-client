@@ -64,6 +64,8 @@ flutter:
   - assets/images/restaurant/categories/
   - assets/images/otherservices/categories/
   - assets/images/Hospital/
+  - assets/images/Bank/
+  - assets/images/restaurant/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

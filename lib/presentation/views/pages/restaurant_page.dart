@@ -1,282 +1,265 @@
 import 'package:flutter/material.dart';
 
-class Category {
-  final String name;
-  final String imageUrl;
-  
-  Category({
-    required this.name, 
-    required this.imageUrl
-  });
-}
-
-class RestaurantPage extends StatefulWidget {
+class RestaurantPage extends StatelessWidget {
   const RestaurantPage({super.key});
-
-  static final List<Category> categories = [
-    Category(
-      name: 'Fried chicken',
-      imageUrl: 'assets/images/restaurant/categories/friedchicken.png',
-    ),
-    Category(
-      name: 'Fast food',
-      imageUrl: 'assets/images/restaurant/categories/fastfood.png',
-    ),
-    Category(
-      name: 'Noodles',
-      imageUrl: 'assets/images/restaurant/categories/noodle.png',
-    ),
-    Category(
-      name: 'Yakiniku',
-      imageUrl: 'assets/images/restaurant/categories/yakiniku.png',
-    ),
-    Category(
-      name: 'Pizza',
-      imageUrl: 'assets/images/restaurant/categories/pizza.png',
-    ),
-    Category(
-      name: 'Shabu',
-      imageUrl: 'assets/images/restaurant/categories/shabu.png',
-    ),
-    Category(
-      name: 'Dessert',
-      imageUrl: 'assets/images/restaurant/categories/pizza.png',
-    ),
-    Category(
-      name: 'Asian',
-      imageUrl: 'assets/images/restaurant/categories/pizza.png',
-    ),
-    Category(
-      name: 'Mexican',
-      imageUrl: 'assets/images/restaurant/categories/pizza.png',
-    ),
-    Category(
-      name: 'Indian',
-      imageUrl: 'assets/images/restaurant/categories/pizza.png',
-    ),
-  ];
-
-  @override
-  State<RestaurantPage> createState() => _RestaurantPageState();
-}
-
-class _RestaurantPageState extends State<RestaurantPage> {
- 
-  final Set<int> _selectedCategories = {};
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Restaurant"),
-      ),
+      appBar: AppBar(title: const Text("Restaurant")),
       body: SingleChildScrollView(
+        child: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 16),
             SizedBox(
-                width: MediaQuery.of(context).size.width * 0.9,
-                height: 50,
-                child: SearchBar(
-                  leading: const Icon(Icons.search),
-                  hintText: 'Search for restaurant',
-                  backgroundColor: WidgetStateProperty.all(Colors.grey[50]),
-                  shape: WidgetStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
+              width: MediaQuery.of(context).size.width * 0.9,
+              height: 50,
+              child: SearchBar(
+                leading: const Icon(Icons.search),
+                hintText: 'Search',
+                backgroundColor: MaterialStateProperty.all(Colors.grey[50]),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-              ),  
-            const SizedBox(height: 16),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.13,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: RestaurantPage.categories.length,
-                itemBuilder: (context, index) {
-                  bool isSelected = _selectedCategories.contains(index);
-                  
-                  return Padding(
-                    padding: EdgeInsets.only(left: index == 0 ? 18.0 : 8.0, top: 8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          if (isSelected) {
-                            _selectedCategories.remove(index);
-                          } else {
-                            _selectedCategories.add(index);
-                          }
-                        });
-                      },
-                      child: Column(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: isSelected ? Color(0xFF6B9080) : Colors.transparent,
-                                width: 5,
-                              ),
-                            ),
-                            child: CircleAvatar(
-                              radius: 35,
-                              backgroundImage: AssetImage(
-                                RestaurantPage.categories[index].imageUrl
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            RestaurantPage.categories[index].name,
-                            style: const TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'Inter'
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 16),
+            Container(
+              height: 150,
+              width: MediaQuery.of(context).size.width * 0.9,
+              decoration: BoxDecoration(
+                color: Colors.grey.shade300,
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+            const SizedBox(height: 16),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 18.0),
-                    child: Text(
-                      'Recently use',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: "Inter",
-                      ),
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                    'Recently use',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "Inter",
                     ),
                   ),
                 ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 18.0),
-                    child: Text(
-                      'see all',
-                      style: TextStyle(
-                        color: Color(0xFFA4C3B2),
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: "Inter",
-                      ),
+              Align(
+                alignment: Alignment.topRight,
+                child: Text(
+                    'see all',
+                    style: TextStyle(
+                      color: Color(0xFFA4C3B2),
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "Inter",
                     ),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 16),
             SizedBox(
-              height: 200,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return Container(
-                    margin: const EdgeInsets.only(left: 18),
-                    width: 150,
-                    height: 150,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: Colors.grey,
-                    ),
-                  );
-                },
-              ),
+  height: 200,
+  child: ListView.builder(
+    scrollDirection: Axis.horizontal,
+    shrinkWrap: true,
+    padding: EdgeInsets.zero, // Remove default padding
+    itemCount: 5,
+    itemBuilder: (context, index) {
+      return Container(
+        width: 150, // Fixed width for each item
+        margin: const EdgeInsets.only(right: 12), // Add space between items
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          color: Colors.grey,
+        ),
+      );
+    },
+  ),
+),
+            const SizedBox(height: 16),
+            const Text(
+              "Restaurant Near You",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 16),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 18.0),
-                child: Text(
-                  'Restaurant near you',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Inter",
-                  ),
-                ),
-              ),
+            const SizedBox(height: 16),
+
+            // Hospital Cards
+            RestaurantCard(
+              imagePath: 'assets/images/restaurant/bbqplaza.png',
+              name: 'SCB',
+              location: 'Central World',
+              waitTime: 'Wait 5 queues (~ 30 mins.)',
+              isDisabled: false,
             ),
-            SizedBox(height: 8),
-            GridView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 1,
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16,
-              childAspectRatio: 3 / 1,
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 18),
-              itemCount: 3,
-              itemBuilder: (context, index) {
-              return Container(
-                decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                color: Colors.grey,
-                ),
-              );
-              },
+            const SizedBox(height: 16),
+            RestaurantCard(
+              imagePath: 'assets/images/restaurant/pizzacompany.png',
+              name: 'Government Saving Bank',
+              location: 'Central World',
+              waitTime: 'Wait 5 queues (~ 30 mins.)',
+              isDisabled: false,
             ),
-            SizedBox(height: 16),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 18.0),
-                child: Text(
-                  'Out of Area',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Inter",
-                  ),
-                ),
-              ),
+
+            const SizedBox(height: 16),
+            const Text(
+              "Out of Area",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8),
-            GridView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 1,
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16,
-              childAspectRatio: 3 / 1,
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 18),
-              itemCount: 8,
-              itemBuilder: (context, index) {
-              return Container(
-                decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                color: Colors.grey,
-                ),
-              );
-              },
+            const SizedBox(height: 16),
+
+            RestaurantCard(
+              imagePath: 'assets/images/restaurant/pizzacompany.png',
+              name: 'Krungsri Bank',
+              location: 'Khon Kaen',
+              waitTime: 'Wait 5 queues (~ 30 mins.)',
+              isDisabled: true,
             ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.08),
           ],
         ),
+      ),
       )
+    );
+  }
+}
+
+class RestaurantCard extends StatelessWidget {
+  final String imagePath;
+  final String name;
+  final String location;
+  final String waitTime;
+  final bool isDisabled;
+
+  const RestaurantCard({
+    super.key,
+    required this.imagePath,
+    required this.name,
+    required this.location,
+    required this.waitTime,
+    this.isDisabled = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: isDisabled
+          ? () {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  title: const Text(
+                    "Out of Area",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  content: const Text(
+                    "This Restaurant is outside your service area.",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 16, color: Colors.black54),
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: const Text("OK", style: TextStyle(fontSize: 16)),
+                    ),
+                  ],
+                ),
+              );
+            }
+          : null,
+      child: Opacity(
+        opacity: isDisabled ? 0.5 : 1, // Make it look disabled
+        child: Container(
+          padding: const EdgeInsets.all(12.0),
+          decoration: BoxDecoration(
+            color: isDisabled ? Colors.grey.shade300 : Colors.white,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: isDisabled ? Colors.grey.shade400 : Colors.grey.shade100, width: 1),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.2),
+                blurRadius: 8,
+                offset: const Offset(0, 4),
+              ),
+            ],
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.asset(
+                  imagePath,
+                  width: 60,
+                  height: 60,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      name,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: isDisabled ? Colors.black45 : Colors.black,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.location_on,
+                          size: 16,
+                          color: isDisabled ? Colors.grey.shade500 : Colors.teal.shade200,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          location,
+                          style: TextStyle(
+                            color: isDisabled ? Colors.grey.shade500 : Colors.teal.shade200,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 4),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.access_time,
+                          size: 16,
+                          color: isDisabled ? Colors.grey : Colors.grey.shade700,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          waitTime,
+                          style: TextStyle(
+                            color: isDisabled ? Colors.grey : Colors.grey.shade700,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
