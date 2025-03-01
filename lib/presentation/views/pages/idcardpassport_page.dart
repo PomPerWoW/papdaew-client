@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class PhoneRepairPage extends StatelessWidget {
-  const PhoneRepairPage({super.key});
+class IdcardPassportPage extends StatelessWidget {
+  const IdcardPassportPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Phone Repair")),
+      appBar: AppBar(title: const Text("ID Card/Passport")),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -88,13 +88,13 @@ class PhoneRepairPage extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             const Text(
-              "Repair Near You",
+              "Identity Near You",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
 
             // Hospital Cards
-            RepairCard(
+            IdentityCard(
               imagePath: 'assets/images/restaurant/bbqplaza.png',
               name: 'SCB',
               location: 'Central World',
@@ -102,7 +102,7 @@ class PhoneRepairPage extends StatelessWidget {
               isDisabled: false,
             ),
             const SizedBox(height: 16),
-            RepairCard(
+            IdentityCard(
               imagePath: 'assets/images/restaurant/pizzacompany.png',
               name: 'Government Saving Bank',
               location: 'Central World',
@@ -117,7 +117,7 @@ class PhoneRepairPage extends StatelessWidget {
             ),
             const SizedBox(height: 16),
 
-            RepairCard(
+            IdentityCard(
               imagePath: 'assets/images/restaurant/pizzacompany.png',
               name: 'Krungsri Bank',
               location: 'Khon Kaen',
@@ -132,14 +132,14 @@ class PhoneRepairPage extends StatelessWidget {
   }
 }
 
-class RepairCard extends StatelessWidget {
+class IdentityCard extends StatelessWidget {
   final String imagePath;
   final String name;
   final String location;
   final String waitTime;
   final bool isDisabled;
 
-  const RepairCard({
+  const IdentityCard({
     super.key,
     required this.imagePath,
     required this.name,
@@ -162,7 +162,7 @@ class RepairCard extends StatelessWidget {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   content: const Text(
-                    "This Repair is outside your service area.",
+                    "This Identity is outside your service area.",
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 16, color: Colors.black54),
                   ),

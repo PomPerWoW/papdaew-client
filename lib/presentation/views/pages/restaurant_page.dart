@@ -9,25 +9,25 @@ class RestaurantPage extends StatelessWidget {
       appBar: AppBar(title: const Text("Restaurant")),
       body: SingleChildScrollView(
         child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.9,
-              height: 50,
-              child: SearchBar(
-                leading: const Icon(Icons.search),
-                hintText: 'Search',
-                backgroundColor: MaterialStateProperty.all(Colors.grey[50]),
-                shape: MaterialStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.9,
+                height: 50,
+                child: SearchBar(
+                  leading: const Icon(Icons.search),
+                  hintText: 'Search',
+                  backgroundColor: MaterialStateProperty.all(Colors.grey[50]),
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 24),
             Container(
               height: 150,
               width: MediaQuery.of(context).size.width * 0.9,
@@ -68,24 +68,24 @@ class RestaurantPage extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             SizedBox(
-  height: 200,
-  child: ListView.builder(
-    scrollDirection: Axis.horizontal,
-    shrinkWrap: true,
-    padding: EdgeInsets.zero, // Remove default padding
-    itemCount: 5,
-    itemBuilder: (context, index) {
-      return Container(
-        width: 150, // Fixed width for each item
-        margin: const EdgeInsets.only(right: 12), // Add space between items
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          color: Colors.grey,
-        ),
-      );
-    },
-  ),
-),
+              height: 200,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                padding: EdgeInsets.zero, // Remove default padding
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return Container(
+                    width: 150, // Fixed width for each item
+                    margin: const EdgeInsets.only(right: 12), // Add space between items
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      color: Colors.grey,
+                    ),
+                  );
+                },
+              ),
+            ),
             const SizedBox(height: 16),
             const Text(
               "Restaurant Near You",

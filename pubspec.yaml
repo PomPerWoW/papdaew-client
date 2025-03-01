@@ -64,6 +64,12 @@ flutter:
   - assets/images/
   - assets/images/restaurant/categories/
   - assets/images/otherservices/categories/
+  - assets/images/otherservices/drivinglicense/
+  - assets/images/otherservices/barbersalonspa/
+  - assets/images/otherservices/idcardpassport/
+  - assets/images/otherservices/carrepair/
+  - assets/images/otherservices/phonerepair/
+  - assets/images/otherservices/stadiumfitness/
   - assets/images/Hospital/
   - assets/images/Bank/
   - assets/images/restaurant/

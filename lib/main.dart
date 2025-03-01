@@ -9,7 +9,7 @@ import 'package:papdaew_client/presentation/views/pages/bank_page.dart';
 import 'package:papdaew_client/presentation/views/pages/otherservices_page.dart';
 import 'package:papdaew_client/presentation/views/pages/drivinglicense_page.dart';
 import 'package:papdaew_client/presentation/views/pages/barbersalonspa_page.dart';
-import 'package:papdaew_client/presentation/views/pages/governmentcomplex_page.dart';
+import 'package:papdaew_client/presentation/views/pages/idcardpassport_page.dart';
 import 'package:papdaew_client/presentation/views/pages/carrepair_page.dart';
 import 'package:papdaew_client/presentation/views/pages/phonerepair_page.dart';
 import 'package:papdaew_client/presentation/views/pages/stadiumfitness_page.dart';
@@ -95,17 +95,17 @@ class _MyAppState extends State<MyApp> {
           case '/barbersalonspa':
             page = const BarberSalonSpaPage();
             break;
-          case '/governmentcomplex':
-            page = const GovernmentcomplexPage();
+          case '/idcardpassport':
+            page = const IdcardPassportPage();
             break;
           case '/carrepair':
-            page = const CarrepairPage();
+            page = const CarRepairPage();
             break;
           case '/phonerepair':
-            page = const PhonerepairPage();
+            page = const PhoneRepairPage();
             break;
           case '/stadiumfitness':
-            page = const StadiumfitnessPage();
+            page = const StadiumFitnessPage();
             break;
 
           // default page
@@ -119,7 +119,7 @@ class _MyAppState extends State<MyApp> {
         || settings.name == '/otherservices' 
         || settings.name == '/drivinglicense' 
         || settings.name == '/barbersalonspa'
-        || settings.name == '/governmentcomplex' 
+        || settings.name == '/idcardpassport' 
         || settings.name == '/carrepair' 
         || settings.name == '/phonerepair' 
         || settings.name == '/stadiumfitness') {

@@ -20,15 +20,15 @@ class OtherservicesPage extends StatefulWidget {
       imageUrl: 'assets/images/otherservices/categories/barber.jpg',
     ),
     Services(
-      name: 'Government offices',
+      name: 'ID Card/Passport',
       imageUrl: 'assets/images/otherservices/categories/governmentoffice.jpg',
     ),
     Services(
-      name: 'Car repair',
+      name: 'Car Repair',
       imageUrl: 'assets/images/otherservices/categories/carrepair.jpg',
     ),
     Services(
-      name: 'Phone',
+      name: 'Phone Repair',
       imageUrl: 'assets/images/otherservices/categories/phonerepair.jpg',
     ),
     Services(
@@ -74,7 +74,7 @@ class _OtherservicesPageState extends State<OtherservicesPage> {
                     } else if (index == 1) {
                       Navigator.pushNamed(context, '/barbersalonspa');
                     } else if (index == 2) {
-                      Navigator.pushNamed(context, '/governmentcomplex');
+                      Navigator.pushNamed(context, '/idcardpassport');
                     } else if (index == 3) {
                       Navigator.pushNamed(context, '/carrepair');
                     } else if (index == 4) {
