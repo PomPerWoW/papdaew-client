@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:papdaew_client/presentation/views/home_screen.dart';
 import 'package:papdaew_client/presentation/views/pages/login_page.dart';
 // import 'package:papdaew_client/presentation/views/pages/restaurant_page(hold).dart';
@@ -13,6 +14,11 @@ import 'package:papdaew_client/presentation/views/pages/idcardpassport_page.dart
 import 'package:papdaew_client/presentation/views/pages/carrepair_page.dart';
 import 'package:papdaew_client/presentation/views/pages/phonerepair_page.dart';
 import 'package:papdaew_client/presentation/views/pages/stadiumfitness_page.dart';
+import 'package:papdaew_client/presentation/views/pages/restaurantspecificvendor_page.dart';
+import 'package:papdaew_client/presentation/views/pages/notification_page.dart';
+import 'package:papdaew_client/logic/bloc/notification_event.dart';
+import 'package:papdaew_client/logic/bloc/notification_bloc.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -25,40 +31,19 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
-// class _MyAppState extends State<MyApp> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       title: 'PapDaew',
-//       theme: ThemeData(
-//         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
-//       ),
-//       home: const HomeScreen(),
-//       // home: const LoginPage(),
-//       // home: const SignupPage(),
-//       routes: {
-//         '/home': (context) => const HomeScreen(),
-//         '/login': (context) => const LoginPage(),
-//         '/signup': (context) => const SignupPage(),
-//         '/restaurant': (context) => const RestaurantPage(),
-//       },
-//     );
-//   }
-// }
-
-
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'PapDaew',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
-      ),
-      home: const HomeScreen(),
-      onGenerateRoute: (settings) {
+   return BlocProvider(
+      create: (context) => NotificationBloc()..add(LoadNotifications()),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'PapDaew',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        ),
+        home: const HomeScreen(),
+        onGenerateRoute: (settings) {
         Widget page;
         switch (settings.name) {
           // main page
@@ -108,6 +93,16 @@ class _MyAppState extends State<MyApp> {
             page = const StadiumFitnessPage();
             break;
 
+          // vendor specific page
+          case '/restvendorspecific':
+            page = const RestaurantSpecificVendorPage();
+            break;
+
+          // notification
+          case '/notification':
+            page = const NotificationsPage();
+            break;
+
           // default page
           default:
             page = const HomeScreen();
@@ -122,7 +117,8 @@ class _MyAppState extends State<MyApp> {
         || settings.name == '/idcardpassport' 
         || settings.name == '/carrepair' 
         || settings.name == '/phonerepair' 
-        || settings.name == '/stadiumfitness') {
+        || settings.name == '/stadiumfitness'
+        || settings.name == '/restvendorspecific') {
           return PageRouteBuilder(
             settings: settings,
             pageBuilder: (context, animation, secondaryAnimation) => page,
@@ -148,6 +144,7 @@ class _MyAppState extends State<MyApp> {
           settings: settings
         );
       },
+      ),
     );
   }
 }

@@ -1,5 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:papdaew_client/logic/bloc/notification_bloc.dart';
+import 'package:papdaew_client/logic/bloc/notification_state.dart';
+import 'package:papdaew_client/logic/bloc/notification_event.dart';
 
 class HomepagePage extends StatefulWidget {
   const HomepagePage({super.key});
@@ -88,29 +92,39 @@ class _HomepagePageState extends State<HomepagePage> {
       appBar: AppBar(
         title: Image.asset('assets/images/papdaewlogo.png', height: 30),
         actions: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(right: 8),
-              child: CircleAvatar(
-                backgroundColor: Color(0xFFCCE3DE),
-                child: IconButton(
-                  icon: const Icon(Icons.notifications),
-                  color: Color(0xFF6B9080),
-                  onPressed: () {},
-                ),
+          Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: CircleAvatar(
+              backgroundColor: const Color(0xFFCCE3DE),
+              child: BlocBuilder<NotificationBloc, NotificationState>(
+                builder: (context, state) {
+                  return Badge(
+                    label: Text('${state.unreadCount}'),
+                    isLabelVisible: state.unreadCount > 0,
+                    child: IconButton(
+                      icon: const Icon(Icons.notifications),
+                      color: const Color(0xFF6B9080),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/notification');
+                      },
+                    ),
+                  );
+                },
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(right: 16),
-              child: CircleAvatar(
-                backgroundColor: Color(0xFFCCE3DE),
-                child: IconButton(
-                  icon: const Icon(Icons.person),
-                  color: Color(0xFF6B9080),
-                  onPressed: () {},
-                ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: CircleAvatar(
+              backgroundColor: const Color(0xFFCCE3DE),
+              child: IconButton(
+                icon: const Icon(Icons.person),
+                color: const Color(0xFF6B9080),
+                onPressed: () {},
               ),
             ),
-          ],
+          ),
+        ],
         ),  
       body: SingleChildScrollView(
       child: Column(

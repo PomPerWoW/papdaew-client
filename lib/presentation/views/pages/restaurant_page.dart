@@ -175,7 +175,7 @@ class RestaurantCard extends StatelessWidget {
                 ),
               );
             }
-          : null,
+          : () => Navigator.pushNamed(context, '/restvendorspecific'),
       child: Opacity(
         opacity: isDisabled ? 0.5 : 1, // Make it look disabled
         child: Container(

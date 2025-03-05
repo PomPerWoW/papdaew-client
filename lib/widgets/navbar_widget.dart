@@ -16,7 +16,7 @@ class NavbarWidget extends StatelessWidget {
             labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>(
               (Set<WidgetState> states) {
                 return TextStyle(
-                  color: states.contains(WidgetState.selected) ? Colors.red : Colors.black,
+                  color: states.contains(WidgetState.selected) ? Colors.white54 : Colors.black,
                   fontWeight: FontWeight.bold,
                 );
               },
@@ -24,7 +24,7 @@ class NavbarWidget extends StatelessWidget {
             iconTheme: WidgetStateProperty.resolveWith<IconThemeData>(
               (Set<WidgetState> states) {
                 return IconThemeData(
-                  color: states.contains(WidgetState.selected) ? Colors.red : Colors.black,
+                  color: states.contains(WidgetState.selected) ? Colors.white54 : Colors.black,
                 );
               },
             ),
