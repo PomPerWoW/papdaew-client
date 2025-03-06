@@ -149,7 +149,7 @@ class BankCard extends StatelessWidget {
                 ),
               );
             }
-          : null,
+          : () => Navigator.pushNamed(context, '/bankselect'),
       child: Opacity(
         opacity: isDisabled ? 0.5 : 1, // Make it look disabled
         child: Container(
