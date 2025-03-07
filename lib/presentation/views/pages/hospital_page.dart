@@ -125,7 +125,7 @@ class HospitalCard extends StatelessWidget {
                 ),
               );
             }
-          : null,
+          : () => Navigator.pushNamed(context, '/hospitalselect'),
       child: Opacity(
         opacity: isDisabled ? 0.5 : 1, // Make it look disabled
         child: Container(

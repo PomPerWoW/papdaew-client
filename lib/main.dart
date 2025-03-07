@@ -19,7 +19,7 @@ import 'package:papdaew_client/presentation/views/pages/notification_page.dart';
 import 'package:papdaew_client/logic/bloc/notification_event.dart';
 import 'package:papdaew_client/logic/bloc/notification_bloc.dart';
 import 'package:papdaew_client/presentation/views/pages/bankselect_page.dart';
-
+import 'package:papdaew_client/presentation/views/pages/hospitalselect_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -109,6 +109,10 @@ class _MyAppState extends State<MyApp> {
             page = const BankSelectPage();
             break;  
 
+          // hospital select page
+          case '/hospitalselect':
+            page = const HospitalSelectPage();
+            break;
           // default page
           default:
             page = const HomeScreen();
@@ -126,6 +130,7 @@ class _MyAppState extends State<MyApp> {
         || settings.name == '/stadiumfitness'
         || settings.name == '/restvendorspecific'
         || settings.name == '/bankselect'
+        || settings.name == '/hospitalselect'
         ) {
           return PageRouteBuilder(
             settings: settings,
