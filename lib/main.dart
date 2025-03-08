@@ -18,6 +18,8 @@ import 'package:papdaew_client/presentation/views/pages/restaurantspecificvendor
 import 'package:papdaew_client/presentation/views/pages/notification_page.dart';
 import 'package:papdaew_client/logic/bloc/notification_event.dart';
 import 'package:papdaew_client/logic/bloc/notification_bloc.dart';
+import 'package:papdaew_client/logic/bloc/chat_bloc.dart';  // Add this
+import 'package:papdaew_client/logic/bloc/chat_event.dart';
 
 
 void main() {
@@ -34,8 +36,15 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-   return BlocProvider(
-      create: (context) => NotificationBloc()..add(LoadNotifications()),
+   return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => NotificationBloc()..add(LoadNotifications()),
+        ),
+        BlocProvider(
+          create: (context) => ChatBloc()..add(LoadChats()),
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'PapDaew',
@@ -118,7 +127,8 @@ class _MyAppState extends State<MyApp> {
         || settings.name == '/carrepair' 
         || settings.name == '/phonerepair' 
         || settings.name == '/stadiumfitness'
-        || settings.name == '/restvendorspecific') {
+        || settings.name == '/restvendorspecific'
+        || settings.name == '/notification') {
           return PageRouteBuilder(
             settings: settings,
             pageBuilder: (context, animation, secondaryAnimation) => page,

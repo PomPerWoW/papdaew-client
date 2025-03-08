@@ -13,20 +13,6 @@ class NotificationsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Notifications'),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: BlocBuilder<NotificationBloc, NotificationState>(
-              builder: (context, state) {
-                return Badge(
-                  label: Text('${state.unreadCount}'),
-                  isLabelVisible: state.unreadCount > 0,
-                  child: const Icon(Icons.notifications),
-                );
-              },
-            ),
-          ),
-        ],
       ),
       body: BlocBuilder<NotificationBloc, NotificationState>(
         builder: (context, state) {

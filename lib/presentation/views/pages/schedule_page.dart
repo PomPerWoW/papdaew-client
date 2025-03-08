@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:papdaew_client/logic/bloc/notification_bloc.dart';
+import 'package:papdaew_client/logic/bloc/notification_state.dart';
+import 'package:papdaew_client/logic/bloc/notification_event.dart';
 
 class QueueItem {
   final String name;
@@ -45,25 +49,26 @@ class _SchedulePageState extends State<SchedulePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'My Queue',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            fontFamily: "Inter",
-          ),
-        ),
-        elevation: 0,
+        title: Image.asset('assets/images/papdaewlogo.png', height: 30),
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 8),
             child: CircleAvatar(
               backgroundColor: const Color(0xFFCCE3DE),
-              child: IconButton(
-                icon: const Icon(Icons.notifications),
-                color: const Color(0xFF6B9080),
-                onPressed: () {},
+              child: BlocBuilder<NotificationBloc, NotificationState>(
+                builder: (context, state) {
+                  return Badge(
+                    label: Text('${state.unreadCount}'),
+                    isLabelVisible: state.unreadCount > 0,
+                    child: IconButton(
+                      icon: const Icon(Icons.notifications),
+                      color: const Color(0xFF6B9080),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/notification');
+                      },
+                    ),
+                  );
+                },
               ),
             ),
           ),
@@ -79,7 +84,7 @@ class _SchedulePageState extends State<SchedulePage> {
             ),
           ),
         ],
-      ),
+      ),  
       body: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
