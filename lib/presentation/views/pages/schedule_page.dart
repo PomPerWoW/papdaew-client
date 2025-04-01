@@ -1,206 +1,239 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:papdaew_client/logic/bloc/queue_bloc.dart';
+import 'package:papdaew_client/logic/bloc/queue_event.dart';
+import 'package:papdaew_client/logic/bloc/queue_state.dart';
 import 'package:papdaew_client/logic/bloc/notification_bloc.dart';
 import 'package:papdaew_client/logic/bloc/notification_state.dart';
-import 'package:papdaew_client/logic/bloc/notification_event.dart';
 
-class QueueItem {
-  final String name;
-  final String time;
-
-  QueueItem({required this.name, required this.time});
-}
-
-class SchedulePage extends StatefulWidget {
+class SchedulePage extends StatelessWidget {
   const SchedulePage({super.key});
 
   @override
-  _SchedulePageState createState() => _SchedulePageState();
-}
-
-class _SchedulePageState extends State<SchedulePage> {
-  bool isUpcomingSelected = true;
-
-  final List<QueueItem> upcomingQueues = [
-    QueueItem(name: 'Coffee Shop', time: '10:30 AM'),
-    QueueItem(name: 'Dental Clinic', time: '02:00 PM'),
-    QueueItem(name: 'dsadsa', time: '10:30 AM'),
-    QueueItem(name: 'Dental Clinic', time: '02:00 PM'),
-    QueueItem(name: 'Coffee Shop', time: '10:30 AM'),
-    QueueItem(name: 'Dental Clinic', time: '02:00 PM'),
-    QueueItem(name: 'Coffee Shop', time: '10:30 AM'),
-    QueueItem(name: 'Dental Clinic', time: '02:00 PM'),
-
-  ];
-
-  final List<QueueItem> pastQueues = [
-    QueueItem(name: 'Restaurant', time: '12:00 PM'),
-    QueueItem(name: 'Barbershop', time: '03:45 PM'),
-    QueueItem(name: 'Restaurant', time: '12:00 PM'),
-    QueueItem(name: 'Barbershop', time: '03:45 PM'),
-    QueueItem(name: 'Restaurant', time: '12:00 PM'),
-    QueueItem(name: 'Barbershop', time: '03:45 PM'),
-    QueueItem(name: 'Restaurant', time: '12:00 PM'),
-    QueueItem(name: 'Barbershop', time: '03:45 PM'),
-  ];
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Image.asset('assets/images/papdaewlogo.png', height: 30),
-        actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: CircleAvatar(
-              backgroundColor: const Color(0xFFCCE3DE),
-              child: BlocBuilder<NotificationBloc, NotificationState>(
-                builder: (context, state) {
-                  return Badge(
-                    label: Text('${state.unreadCount}'),
-                    isLabelVisible: state.unreadCount > 0,
-                    child: IconButton(
-                      icon: const Icon(Icons.notifications),
-                      color: const Color(0xFF6B9080),
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/notification');
-                      },
-                    ),
-                  );
-                },
+    return BlocProvider(
+      create: (context) => QueueBloc()..add(FetchUpcomingQueues()),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Image.asset('assets/images/papdaewlogo.png', height: 30),
+          automaticallyImplyLeading: false,
+          actions: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: CircleAvatar(
+                backgroundColor: const Color(0xFFCCE3DE),
+                child: BlocBuilder<NotificationBloc, NotificationState>(
+                  builder: (context, state) {
+                    return Badge(
+                      label: Text('${state.unreadCount}'),
+                      isLabelVisible: state.unreadCount > 0,
+                      child: IconButton(
+                        icon: const Icon(Icons.notifications),
+                        color: const Color(0xFF6B9080),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/notification');
+                        },
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: CircleAvatar(
-              backgroundColor: const Color(0xFFCCE3DE),
-              child: IconButton(
-                icon: const Icon(Icons.person),
-                color: const Color(0xFF6B9080),
-                onPressed: () {},
-              ),
-            ),
-          ),
-        ],
-      ),  
-      body: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.9,
-                          height: 50,
-                          child: SearchBar(
-                            leading: const Icon(Icons.search),
-                            hintText: 'Search',
-                            backgroundColor: MaterialStateProperty.all(Colors.grey[50]),
-                            shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                          ),
-                        ),
-                  SizedBox(height: 16),
-                  Container(
-                      decoration: BoxDecoration(
-                        color: Colors.grey[200],
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  isUpcomingSelected = true;
-                                });
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(vertical: 12),
-                                decoration: BoxDecoration(
-                                  color: isUpcomingSelected ? Colors.green : Colors.transparent,
-                                  borderRadius: BorderRadius.circular(25),
-                                ),
-                                alignment: Alignment.center,
-                                child: Text(
-                                  'Upcoming',
-                                  style: TextStyle(
-                                    color: isUpcomingSelected ? Colors.white : Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  isUpcomingSelected = false;
-                                });
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(vertical: 12),
-                                decoration: BoxDecoration(
-                                  color: !isUpcomingSelected ? Colors.green : Colors.transparent,
-                                  borderRadius: BorderRadius.circular(25),
-                                ),
-                                alignment: Alignment.center,
-                                child: Text(
-                                  'Past',
-                                  style: TextStyle(
-                                    color: !isUpcomingSelected ? Colors.white : Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  SizedBox(height: 16),
-                  
-                  Expanded(
-              child: ListView.builder(
-                padding: EdgeInsets.zero, // Prevent extra padding
-                itemCount: isUpcomingSelected ? upcomingQueues.length : pastQueues.length,
-                itemBuilder: (context, index) {
-                  final queue = isUpcomingSelected ? upcomingQueues[index] : pastQueues[index];
-                  return Card(
-                    margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    elevation: 4,
-                    child: ListTile(
-                      contentPadding: const EdgeInsets.all(16),
-                      leading: Icon(Icons.schedule, color: Colors.green, size: 30),
-                      title: Text(
-                        queue.name,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      subtitle: Text(
-                        'Time: ${queue.time}',
-                        style: const TextStyle(fontSize: 14, color: Colors.grey),
-                      ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.grey,
-                        size: 18,
-                      ),
-                    ),
-                  );
-                },
+            Padding(
+              padding: const EdgeInsets.only(right: 16),
+              child: CircleAvatar(
+                backgroundColor: const Color(0xFFCCE3DE),
+                child: IconButton(
+                  icon: const Icon(Icons.person),
+                  color: const Color(0xFF6B9080),
+                  onPressed: () {},
+                ),
               ),
             ),
           ],
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Hi Inthat,',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                'Here are your past orders.',
+                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ),
+              const SizedBox(height: 16),
+              BlocBuilder<QueueBloc, QueueState>(
+                builder: (context, state) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () {
+                              context.read<QueueBloc>().add(FetchUpcomingQueues());
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(vertical: 12),
+                              decoration: BoxDecoration(
+                                color: state.isUpcoming ? Colors.green : Colors.transparent,
+                                borderRadius: BorderRadius.circular(25),
+                              ),
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Upcoming',
+                                style: TextStyle(
+                                  color: state.isUpcoming ? Colors.white : Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () {
+                              context.read<QueueBloc>().add(FetchPastQueues());
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(vertical: 12),
+                              decoration: BoxDecoration(
+                                color: !state.isUpcoming ? Colors.green : Colors.transparent,
+                                borderRadius: BorderRadius.circular(25),
+                              ),
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Past',
+                                style: TextStyle(
+                                  color: !state.isUpcoming ? Colors.white : Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(height: 16),
+              Expanded(
+                child: BlocBuilder<QueueBloc, QueueState>(
+                  builder: (context, state) {
+                    if (state.queues.isEmpty) {
+                      return const Center(child: Text('No queues available.'));
+                    }
+                    return ListView.builder(
+                      padding: EdgeInsets.zero,
+                      itemCount: state.queues.length,
+                      itemBuilder: (context, index) {
+                        final queue = state.queues[index];
+                        return Card(
+                          margin: const EdgeInsets.symmetric(vertical: 8),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          elevation: 2,
+                          child: Row(
+                            children: [
+                              // Left side: Image
+                              ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(15),
+                                  bottomLeft: Radius.circular(15),
+                                ),
+                                child: queue.imageUrl.isNotEmpty
+                                    ? Image.network(
+                                        queue.imageUrl,
+                                        width: 100,
+                                        height: 155,
+                                        fit: BoxFit.cover,
+                                        errorBuilder: (context, error, stackTrace) {
+                                          return Container(
+                                            width: 100,
+                                            height: 155,
+                                            color: Colors.grey[300],
+                                          );
+                                        },
+                                      )
+                                    : Container(
+                                        width: 100,
+                                        height: 155,
+                                        color: Colors.grey[300],
+                                      ),
+                              ),
+                              // Right side: Details
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(12.0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        queue.date,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Text(
+                                        queue.eventName,
+                                        style: const TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Text(
+                                        queue.location,
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.grey,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 8),
+                                      Align(
+                                        alignment: Alignment.centerRight,
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            // Navigate to ticket details or perform action
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.blue,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(10),
+                                            ),
+                                          ),
+                                          child: const Text(
+                                            'View Ticket',
+                                            style: TextStyle(color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

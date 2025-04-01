@@ -91,6 +91,7 @@ class _HomepagePageState extends State<HomepagePage> {
     return Scaffold(
       appBar: AppBar(
         title: Image.asset('assets/images/papdaewlogo.png', height: 30),
+        automaticallyImplyLeading: false,
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 8),
