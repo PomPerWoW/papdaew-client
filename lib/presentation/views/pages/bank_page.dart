@@ -28,15 +28,6 @@ class BankPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            Container(
-              height: 150,
-              width: MediaQuery.of(context).size.width * 0.9,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade300,
-                borderRadius: BorderRadius.circular(8),
-              ),
-            ),
-            const SizedBox(height: 16),
             const Text(
               "Bank Near You",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),

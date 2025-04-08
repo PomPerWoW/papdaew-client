@@ -28,15 +28,6 @@ class RestaurantPage extends StatelessWidget {
                 ),
               ),
             const SizedBox(height: 24),
-            Container(
-              height: 150,
-              width: MediaQuery.of(context).size.width * 0.9,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade300,
-                borderRadius: BorderRadius.circular(8),
-              ),
-            ),
-            const SizedBox(height: 16),
             Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -67,25 +58,105 @@ class RestaurantPage extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 16),
-            SizedBox(
-              height: 200,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                padding: EdgeInsets.zero, // Remove default padding
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return Container(
-                    width: 150, // Fixed width for each item
-                    margin: const EdgeInsets.only(right: 12), // Add space between items
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: Colors.grey,
-                    ),
-                  );
-                },
+       SizedBox(
+  height: 160,
+  child: ListView.builder(
+    scrollDirection: Axis.horizontal,
+    shrinkWrap: true,
+    padding: EdgeInsets.zero,
+    itemCount: 5,
+    itemBuilder: (context, index) {
+      final restaurants = [
+        {
+          "imagePath": "assets/images/restaurant/pizzacompany.png",
+          "name": "Pizza Company",
+          "location": "Pra Ram 9",
+          "rating": "4.8"
+        },
+        {
+          "imagePath": "assets/images/restaurant/bbqplaza.png",
+          "name": "Bar B Q Plaza",
+          "location": "Ari",
+          "rating": "4.7"
+        },
+      ];
+
+      final data = restaurants[index % restaurants.length];
+
+      return Container(
+        width: 150,
+        margin: const EdgeInsets.only(right: 12),
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: Image.asset(
+                  data["imagePath"]!,
+                  width: 60,
+                  height: 60,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
+            const SizedBox(height: 12),
+            Text(
+              data["name"]!,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Row(
+              children: [
+                Icon(Icons.location_on, size: 14, color: Colors.teal.shade200),
+                const SizedBox(width: 4),
+                Expanded(
+                  child: Text(
+                    data["location"]!,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.teal.shade200,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 4),
+            Row(
+              children: [
+                const Icon(Icons.star, size: 14, color: Colors.amber),
+                const SizedBox(width: 4),
+                Text(
+                  data["rating"]!,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
+    },
+  ),
+),
+
             const SizedBox(height: 16),
             const Text(
               "Restaurant Near You",

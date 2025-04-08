@@ -26,7 +26,7 @@ class _RestaurantSpecificVendorPageState extends State<RestaurantSpecificVendorP
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Restaurant Specific Vendor'),
+        title: Text('Bar-B-Q Plaza'),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -35,7 +35,7 @@ class _RestaurantSpecificVendorPageState extends State<RestaurantSpecificVendorP
           children: [
             SpecificVendor(
               imagePath: 'assets/images/restaurant/bbqplaza.png',
-              name: 'SCB',
+              name: 'Bar-B-Q Plaza',
               location: 'Central World',
               waitTime: 'Wait 5 queues (~ 30 mins.)',
             ),

@@ -20,9 +20,9 @@ class _SchedulePageState extends State<SchedulePage> {
 
   final List<QueueItem> upcomingQueues = [
     QueueItem(name: 'Coffee Shop', time: '10:30 AM'),
-    QueueItem(name: 'Dental Clinic', time: '02:00 PM'),
-    QueueItem(name: 'dsadsa', time: '10:30 AM'),
-    QueueItem(name: 'Dental Clinic', time: '02:00 PM'),
+    QueueItem(name: 'Dental Clinic', time: '11:00 AM'),
+    QueueItem(name: 'SCB', time: '1:30 PM'),
+    QueueItem(name: 'DINNING RESTAURANT', time: '05:00 PM'),
     QueueItem(name: 'Coffee Shop', time: '10:30 AM'),
     QueueItem(name: 'Dental Clinic', time: '02:00 PM'),
     QueueItem(name: 'Coffee Shop', time: '10:30 AM'),
